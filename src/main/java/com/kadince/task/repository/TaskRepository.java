@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
-    @Query("SELECT t FROM Task t ORDER BY t.completed ASC, t.deadline ASC NULLS LAST")
+    @Query("SELECT t FROM Task t ORDER BY t.completed ASC, CASE WHEN t.deadline IS NULL THEN 1 ELSE 0 END, t.deadline ASC")
     List<Task> findAllOrderByDeadlineAndCompleted();
 }
