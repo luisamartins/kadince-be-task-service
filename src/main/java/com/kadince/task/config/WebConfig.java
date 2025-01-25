@@ -8,13 +8,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
+    private static final String LOCAL_FRONTEND_URL = "http://localhost:4200";
+    private static final String PRODUCTION_FRONTEND_URL = "https://sage-nasturtium-9ad2db.netlify.app";
+
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
-                        .allowedOrigins("http://localhost:4200")
+                        .allowedOrigins(
+                                LOCAL_FRONTEND_URL,
+                                PRODUCTION_FRONTEND_URL
+                        )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
