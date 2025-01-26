@@ -17,6 +17,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Test class for TaskService.
+ */
 @SpringBootTest
 @ActiveProfiles("test")
 public class TaskServiceTest {
@@ -26,6 +29,9 @@ public class TaskServiceTest {
     @MockBean
     private TaskRepository taskRepository;
 
+    /**
+     * Test for getting all tasks ordered by deadline and completion status.
+     */
     @Test
     public void testGetAllTasksOrdered() {
         Task task1 = new Task();
@@ -49,6 +55,9 @@ public class TaskServiceTest {
         assertEquals("Task 2", tasks.get(1).getTitle());
     }
 
+    /**
+     * Test for creating a task with a title.
+     */
     @Test
     public void testCreateTaskWithTitle() {
         Task task = new Task();
@@ -70,6 +79,9 @@ public class TaskServiceTest {
         verify(taskRepository, times(1)).save(task);
     }
 
+    /**
+     * Test for creating a task without a title.
+     */
     @Test
     public void testCreateTaskWithoutTitle() {
         Task task = new Task();
@@ -83,6 +95,9 @@ public class TaskServiceTest {
         assertTrue(exception.getMessage().contains("Title is mandatory"));
     }
 
+    /**
+     * Test for updating a task with a title.
+     */
     @Test
     public void testUpdateTaskWithTitle() {
         Task existingTask = new Task();
@@ -113,6 +128,9 @@ public class TaskServiceTest {
         verify(taskRepository, times(1)).save(existingTask);
     }
 
+    /**
+     * Test for updating a task without a title.
+     */
     @Test
     public void testUpdateTaskWithoutTitle() {
         Task existingTask = new Task();
@@ -134,6 +152,9 @@ public class TaskServiceTest {
         assertTrue(exception.getMessage().contains("Title is mandatory"));
     }
 
+    /**
+     * Test for deleting a task.
+     */
     @Test
     public void testDeleteTask() {
         Long taskId = 1L;

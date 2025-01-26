@@ -7,8 +7,17 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Global exception handler for handling validation exceptions.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    /**
+     * Handles validation exceptions and returns a map of field errors.
+     *
+     * @param ex the MethodArgumentNotValidException
+     * @return a map of field errors
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
