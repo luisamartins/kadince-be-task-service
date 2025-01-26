@@ -25,6 +25,7 @@ public class TaskService {
         oldTask.setTitle(newTask.getTitle());
         oldTask.setDescription(newTask.getDescription());
         oldTask.setCompleted(newTask.isCompleted());
+        oldTask.setDeadline(newTask.getDeadline());
         return taskRepository.save(oldTask);
     }
 
