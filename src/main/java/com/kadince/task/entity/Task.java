@@ -1,6 +1,7 @@
 package com.kadince.task.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,10 +16,9 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Title is mandatory")
     private String title;
     private String description;
     private boolean completed;
-
-    @Column(name = "deadline") // Nome da coluna no banco
     private LocalDate deadline;
 }
